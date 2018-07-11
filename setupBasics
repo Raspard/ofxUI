@@ -1,6 +1,6 @@
 void ofApp::setupBasicsGUI() {
 	
-	ofxUICanvas *guiBasics = new ofxUICanvas(0, 0,guiWidth, ofGetHeight());
+	ofxUICanvas *guiBasics = new ofxUICanvas(0, 0,guiWidth, ofGetHeight());		//Canvas create
 	guiBasics->setUIColors(uiThemecb, uiThemeco, uiThemecoh, uiThemecf, uiThemecfh, uiThemecp, uiThemecpo);
 	guiBasics->addSpacer();
 	guiBasics->addLabel("Background", OFX_UI_FONT_MEDIUM);
@@ -95,7 +95,7 @@ void ofApp::setupBasicsGUI() {
 
 	ofAddListener(guiBasics->newGUIEvent, this, &ofApp::guiEvent);
 	guis.push_back(guiBasics);
-	guiBasics->setPosition(150, 0);
+	guiBasics->setPosition(150, 0);			//REPOSITION CANVAS.
 	
 	
 }
