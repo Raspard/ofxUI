@@ -1,0 +1,101 @@
+void ofApp::setupBasicsGUI() {
+	
+	ofxUICanvas *guiBasics = new ofxUICanvas(0, 0,guiWidth, ofGetHeight());
+	guiBasics->setUIColors(uiThemecb, uiThemeco, uiThemecoh, uiThemecf, uiThemecfh, uiThemecp, uiThemecpo);
+	guiBasics->addSpacer();
+	guiBasics->addLabel("Background", OFX_UI_FONT_MEDIUM);
+	guiBasics->addSpacer();
+	ofxUISlider *redSlider = guiBasics->addSlider("Red Top", 0.0, 255.0, &red);
+	redSlider->setColorFill(ofColor::red);
+	guiBasics->setDrawOutline(true);
+	guiBasics->setColorOutline(ofColor::red);
+
+	guiBasics->drawFill();
+	guiBasics->setWidgetPosition(OFX_UI_WIDGET_POSITION_RIGHT);
+	guiBasics->setWidgetSpacing(35);
+	guiBasics->setWidgetPosition(OFX_UI_WIDGET_POSITION_DOWN);
+	guiBasics->setWidgetSpacing(3);
+	
+	ofxUISlider *greenSlider = guiBasics->addSlider("Green Top", 0.0, 255.0, &green);
+	greenSlider->setColorFill(ofColor(30, 240, 30));
+	greenSlider->setColorFillHighlight(ofColor(30, 150, 30));
+	ofxUISlider *blueSlider = guiBasics->addSlider("Blue Top", 0.0, 255.0, &blue);
+	blueSlider->setColorFill(ofColor(30, 30, 240));
+	blueSlider->setColorFillHighlight(ofColor(30, 30, 150));
+	ofxUISlider *alphaSlider = guiBasics->addSlider("Alpha Top", 0.0, 255.0, &alpha);
+	guiBasics->addToggle("Rand T", &bkgd.rand1);
+	guiBasics->setWidgetPosition(OFX_UI_WIDGET_POSITION_RIGHT);
+	guiBasics->setWidgetSpacing(25);
+	guiBasics->addToggle("Hue T", &bkgd.hue1);
+	guiBasics->setWidgetPosition(OFX_UI_WIDGET_POSITION_RIGHT);
+	guiBasics->setWidgetSpacing(25);
+	guiBasics->addToggle("Alpha T", &bkgd.alpha1);
+	guiBasics->setWidgetPosition(OFX_UI_WIDGET_POSITION_DOWN);
+	guiBasics->setWidgetSpacing(3);
+	ofxUISlider *speedSlider1 = guiBasics->addSlider("Speed Top", 0.0, 25, &bkgd.speed1);
+
+	ofxUISlider *redSlider2 = guiBasics->addSlider("Red Bottom", 0.0, 255.0, &red2);
+	redSlider2->setColorFill(ofColor(240, 30, 30));
+	redSlider2->setColorFillHighlight(ofColor(150, 30, 30));
+	ofxUISlider *greenSlider2 = guiBasics->addSlider("Green Bottom", 0.0, 255.0, &green2);
+	greenSlider2->setColorFill(ofColor(30, 240, 30));
+	greenSlider2->setColorFillHighlight(ofColor(30, 150, 30));
+	ofxUISlider *blueSlider2 = guiBasics->addSlider("Blue Bottom", 0.0, 255.0, &blue2);
+	blueSlider2->setColorFill(ofColor(30, 30, 240));
+	blueSlider2->setColorFillHighlight(ofColor(30, 30, 150));
+	ofxUISlider *alphaSlider2 = guiBasics->addSlider("Alpha Bottom", 0.0, 255.0, &alpha2);
+	guiBasics->addToggle("Rand B", &bkgd.rand2);
+	guiBasics->setWidgetPosition(OFX_UI_WIDGET_POSITION_RIGHT);
+	guiBasics->setWidgetSpacing(25);
+	guiBasics->addToggle("Hue B", &bkgd.hue2);
+	guiBasics->setWidgetPosition(OFX_UI_WIDGET_POSITION_RIGHT);
+	guiBasics->setWidgetSpacing(25);
+	guiBasics->addToggle("Alpha B", &bkgd.alpha2);
+	guiBasics->setWidgetPosition(OFX_UI_WIDGET_POSITION_DOWN);
+	guiBasics->setWidgetSpacing(3);
+	ofxUISlider *speedSlider2 = guiBasics->addSlider("Speed Bottom", 0.0, 25, &bkgd.speed2);
+
+	ofxUISlider *gradType = guiBasics->addSlider("GradientType", 0.0, 4.0, &bkgd.gType);
+	guiBasics->addToggle("Sync", &bkgd.sync);
+	guiBasics->setWidgetPosition(OFX_UI_WIDGET_POSITION_RIGHT);
+	guiBasics->setWidgetSpacing(35);
+	guiBasics->addToggle("Invert", &bkgd.invert);
+	guiBasics->setWidgetPosition(OFX_UI_WIDGET_POSITION_RIGHT);
+	guiBasics->setWidgetSpacing(35);
+	guiBasics->addToggle("Flip", &bkgd.FLIP);
+	guiBasics->setWidgetPosition(OFX_UI_WIDGET_POSITION_DOWN);
+	guiBasics->setWidgetSpacing(3);
+	ofxUISlider *fspd = guiBasics->addSlider("Flip Speed", 0.0, 25, &bkgd.speed3);
+	guiBasics->addButton("RANDOMIZE", &bkgd.RANDOM);
+
+	guiBasics->addSpacer();
+	guiBasics->addLabel("Settings", OFX_UI_FONT_MEDIUM);
+	guiBasics->addSpacer();
+	guiBasics->addImageButton("Save Settings", "icons/save.png", false, dim, dim)->setColorBack(ofColor(150, 255));
+	guiBasics->setWidgetPosition(OFX_UI_WIDGET_POSITION_RIGHT);
+	guiBasics->addImageButton("Load Settings", "icons/open.png", false, dim, dim)->setColorBack(ofColor(150, 255));
+	guiBasics->addImageButton("Reset Settings", "icons/reset.png", false, dim, dim)->setColorBack(ofColor(150, 255));
+	guiBasics->setWidgetPosition(OFX_UI_WIDGET_POSITION_DOWN);
+	settingsFilename = guiBasics->addLabel("lastSettings.xml", OFX_UI_FONT_SMALL);
+
+	guiBasics->addSpacer();
+	guiBasics->addLabel("Interpolation", OFX_UI_FONT_MEDIUM);
+	guiBasics->addSpacer();
+	guiBasics->addIntSlider("Transition Frames", 0, 200, &maxTransitionFrames);
+
+	guiBasics->addSpacer();
+	guiBasics->addLabel("FBO", OFX_UI_FONT_MEDIUM);
+	guiBasics->addSpacer();
+	guiBasics->addToggle("Use FBO", &useFBO);
+	guiBasics->addIntSlider("FBO Fade Amount", 70, 100, &fadeAmount);
+
+	guiBasics->addSpacer();
+
+	guiBasics->autoSizeToFitWidgets();
+
+	ofAddListener(guiBasics->newGUIEvent, this, &ofApp::guiEvent);
+	guis.push_back(guiBasics);
+	guiBasics->setPosition(150, 0);
+	
+	
+}
